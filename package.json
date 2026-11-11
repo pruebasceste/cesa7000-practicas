@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/pruebasceste/cesa7000-practicas/issues"
   },
-  "homepage": "https://github.com/pruebasceste/cesa7000-practicas#readme"
+  "homepage": "https://github.com/pruebasceste/cesa7000-practicas#readme",
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
 }
