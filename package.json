@@ -1,0 +1,24 @@
+{
+  "name": "cesa7000-practicas",
+  "version": "1.0.0",
+  "description": "Este es nuestro proyecto de pruebas",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pruebasceste/cesa7000-practicas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/pruebasceste/cesa7000-practicas/issues"
+  },
+  "homepage": "https://github.com/pruebasceste/cesa7000-practicas#readme"
+}
