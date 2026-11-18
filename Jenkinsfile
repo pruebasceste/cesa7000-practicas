@@ -1,11 +1,25 @@
 pipeline {
   agent any
+
+  tools {
+    nodejs 'node24'
+  }
+
+  options {
+    skipDefaultCheckout()
+  }
+
+
   stages {
-    stage('Comprobar entorno') {
+    stage('Clonar') {
       steps {
-        echo 'Repositorio descargado'
-        sh 'ls -la'
-        sh 'docker version'
+        checkout scm
+      }
+    }
+    stage('Tests') {
+      steps {
+        sh 'npm ci'
+        sh 'npm test'
       }
     }
   }
