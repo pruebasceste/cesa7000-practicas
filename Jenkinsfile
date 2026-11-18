@@ -12,7 +12,7 @@ pipeline {
   } 
  
   environment {
-    IMAGEN  = 'usuario/calculadora'
+    IMAGEN  = 'pruebasceste/calculadora'
     VERSION = "1.0.${env.BUILD_NUMBER}"
   }
   
