@@ -147,3 +147,10 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+
+# terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
