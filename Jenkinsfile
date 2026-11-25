@@ -66,6 +66,18 @@ pipeline {
       }
     }
 
+    stage('Seguridad') {
+      steps {
+        sh """docker run --rm \
+          -v /var/run/docker.sock:/var/run/docker.sock \
+          -v trivy-cache:/root/.cache/ \
+          aquasec/trivy:0.76.2 image \
+          --severity CRITICAL --exit-code 1 --ignore-unfixed \
+          ${IMAGEN}:${VERSION}"""
+      }
+    }
+
+
     stage('Publicar') {
       when {
         expression { params.PUBLICAR }
