@@ -154,3 +154,6 @@ vite.config.ts.timestamp-*
 *.tfstate
 *.tfstate.*
 terraform.tfvars
+
+# junit
+reports

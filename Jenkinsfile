@@ -33,7 +33,16 @@ pipeline {
         sh 'npm ci'
         sh 'npm test'
       }
+      post {
+        always {
+          junit allowEmptyResults: true,
+                testResults: 'reports/junit.xml'
+          archiveArtifacts artifacts: 'coverage/lcov-report/**',
+                          allowEmptyArchive: true
+        }
+      }
     }
+
 
     stage('Build imagen') {
       steps {
