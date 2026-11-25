@@ -22,6 +22,15 @@ jobs:
           node-version: 24
       - run: npm ci
       - run: npm test
+      - name: Guardar resultados
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+        name: resultados-tests
+        path: |
+          reports/
+          coverage/lcov-report/
+
 
   docker:
     needs: test
