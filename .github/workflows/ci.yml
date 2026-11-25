@@ -26,10 +26,10 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-        name: resultados-tests
-        path: |
-          reports/
-          coverage/lcov-report/
+          name: resultados-tests
+          path: |
+            reports/
+            coverage/lcov-report/
 
 
   docker:
