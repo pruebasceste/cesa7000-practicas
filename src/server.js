@@ -3,7 +3,7 @@ const { sumar, restar } = require('./index');
  
 const PORT = process.env.PORT || 3000;
  
-http.createServer((req, res) => {
+const server = http.createServer((req, res) => {
   const url = new URL(req.url, 'http://localhost');
   const a = Number(url.searchParams.get('a'));
   const b = Number(url.searchParams.get('b'));
@@ -12,4 +12,10 @@ http.createServer((req, res) => {
   if (url.pathname === '/restar') datos = { resultado: restar(a, b) };
   res.writeHead(200, { 'Content-Type': 'application/json' });
   res.end(JSON.stringify(datos));
-}).listen(PORT, () => console.log(`Escuchando en el puerto ${PORT}`));
+});
+ 
+if (require.main === module) {
+  server.listen(PORT, () => console.log(`Escuchando en el puerto ${PORT}`));
+}
+ 
+module.exports = server;
