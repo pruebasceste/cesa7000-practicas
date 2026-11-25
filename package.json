@@ -23,13 +23,23 @@
   },
   "homepage": "https://github.com/pruebasceste/cesa7000-practicas#readme",
   "devDependencies": {
-    "jest": "^30.5.2"
+    "jest": "^30.5.2",
+    "jest-junit": "^17.0.0"
   },
   "jest": {
     "collectCoverage": true,
-    "collectCoverageFrom": ["src/**/*.js"],
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
     "coverageThreshold": {
-      "global": { "lines": 80 }
-    }
+      "global": {
+        "lines": 80
+      }
+    },
+    "reporters": [
+      "default",
+      ["jest-junit", { "outputDirectory": "reports",
+                      "outputName": "junit.xml" }]
+    ]
   }
 }
