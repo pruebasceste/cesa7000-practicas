@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v6
         with:
           node-version: 24
@@ -31,6 +33,14 @@ jobs:
             reports/
             coverage/lcov-report/
 
+      - name: Análisis de calidad
+        uses: SonarSource/sonarqube-scan-action@v8
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
+            -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
 
   docker:
     needs: test
@@ -45,6 +55,15 @@ jobs:
 
       - name: Build imagen
         run: docker build -t "$IMAGEN:$VERSION" .
+
+      - name: Análisis de seguridad
+        uses: aquasecurity/trivy-action@a9c7b0f06e461e9d4b4d1711f154ee024b8d7ab8 # v0.36.0
+        with:
+          image-ref: ${{ env.IMAGEN }}:${{ env.VERSION }}
+          version: v0.76.2
+          severity: CRITICAL
+          exit-code: '1'
+          ignore-unfixed: true
 
       - name: Login en DockerHub
         if: env.PUBLICAR == 'true'
